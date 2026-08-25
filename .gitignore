@@ -1,0 +1,11 @@
+# Dependencies
+node_modules
+dist
+
+# Environment variables (Never upload these!)
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
