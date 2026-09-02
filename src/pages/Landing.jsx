@@ -9,9 +9,7 @@ export default function Landing({ onStart }) {
       <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
 
       <div className="z-10 text-center">
-        <div className="glass inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm font-semibold text-blue-300">
-          <Sparkles size={16} /> Powered by Google Gemini
-        </div>
+       
 
         <div className="flex justify-center mb-6">
           <div className="p-6 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-3xl shadow-[0_0_40px_rgba(59,130,246,0.5)]">
