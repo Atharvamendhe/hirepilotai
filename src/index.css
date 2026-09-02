@@ -1,9 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #0f172a;
-  color: #e2e8f0;
-  font-family: 'Inter', sans-serif;
+:root {
+  font-family: 'Manrope', sans-serif;
 }
+
+body {
+  background: #030712; /* Deep dark background */
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+/* Background Glow Effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+  z-index: -1;
+  animation: rotate-bg 30s linear infinite;
+}
+
+@keyframes rotate-bg {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Glassmorphism Class */
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #030712; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
