@@ -1,6 +1,3 @@
-import * as pdfjsLib from 'pdfjs-dist';
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 import React, { useState } from 'react';
 import { ArrowRight, FileText, Upload, X, Loader2 } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -15,13 +12,12 @@ export default function Details({ onStart }) {
     company: 'Google',
     role: 'Software Engineer',
     skills: 'React, Node.js',
-    resumeText: '', // Starts empty now, user can type OR upload
+    resumeText: '', 
   });
 
   const [isParsing, setIsParsing] = useState(false);
   const [fileName, setFileName] = useState(null);
 
-  // Function to handle PDF file upload
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -35,7 +31,6 @@ export default function Details({ onStart }) {
     setFileName(file.name);
 
     try {
-      // Parse the PDF text
       const pdf = await pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
       let fullText = '';
       
@@ -45,7 +40,6 @@ export default function Details({ onStart }) {
         fullText += content.items.map(item => item.str).join(' ') + '\n';
       }
 
-      // Update the resumeText field
       setForm({ ...form, resumeText: fullText });
       alert("Resume uploaded and parsed successfully!");
     } catch (error) {
@@ -57,7 +51,6 @@ export default function Details({ onStart }) {
     }
   };
 
-  // Function to remove the uploaded file
   const removeFile = () => {
     setFileName(null);
     setForm({ ...form, resumeText: '' });
@@ -81,7 +74,6 @@ export default function Details({ onStart }) {
         </div>
 
         <div className="space-y-5">
-          {/* User Info */}
           <input className="w-full bg-slate-800/50 rounded-xl p-4 border border-slate-700 outline-none focus:border-blue-500" placeholder="Your Name"
             onChange={e => setForm({...form, name: e.target.value})} />
 
@@ -93,7 +85,6 @@ export default function Details({ onStart }) {
           <input className="w-full bg-slate-800/50 rounded-xl p-4 border border-slate-700 outline-none focus:border-blue-500" placeholder="Target Role"
             onChange={e => setForm({...form, role: e.target.value})} />
 
-          {/* PDF Upload Area */}
           <div className="relative">
             {isParsing ? (
               <div className="flex items-center justify-center w-full p-6 border-2 border-dashed border-blue-500 rounded-xl bg-blue-500/10 text-blue-400">
@@ -110,7 +101,6 @@ export default function Details({ onStart }) {
                   <input type="file" accept=".pdf" onChange={handleFileUpload} className="hidden" />
                 </label>
 
-                {/* Show file name if uploaded */}
                 {fileName && (
                   <div className="mt-2 flex items-center justify-between bg-slate-800/50 p-3 rounded-xl border border-green-500/30">
                     <span className="text-green-400 text-sm flex items-center gap-2">
@@ -125,7 +115,6 @@ export default function Details({ onStart }) {
             )}
           </div>
 
-          {/* Manual Resume Input (Optional) */}
           <textarea 
             className="w-full bg-slate-800/50 rounded-xl p-4 border border-slate-700 outline-none focus:border-blue-500 h-32 resize-none" 
             placeholder="Or manually paste your resume text here..."
