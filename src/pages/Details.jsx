@@ -1,5 +1,6 @@
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 import React, { useState } from 'react';
 import { ArrowRight, FileText, Upload, X, Loader2 } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
